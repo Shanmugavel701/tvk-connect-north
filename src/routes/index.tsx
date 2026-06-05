@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import heroBg from "@/assets/hero-bg.jpg";
 import { SiteHeader } from "@/components/SiteHeader";
-import { HeroBanner } from "@/components/HeroBanner";
 import { ComplaintForm } from "@/components/ComplaintForm";
+import infoImage from "@/assets/image.png";
 import { TrackComplaint } from "@/components/TrackComplaint";
 import { useLang, tr } from "@/lib/i18n";
 import { ShieldCheck } from "lucide-react";
@@ -43,8 +43,14 @@ function Index() {
           </Link>
         </div>
         <SiteHeader />
-        <HeroBanner />
-        <div className="mt-8">
+        <div className="mt-8 mb-6">
+          <img
+            src={infoImage}
+            alt="Information"
+            className="w-full rounded-2xl object-cover shadow-political"
+          />
+        </div>
+        <div>
           <ComplaintForm />
         </div>
         <TrackComplaint />
