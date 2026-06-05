@@ -47,7 +47,7 @@ function Index() {
           <img
             src={infoImage}
             alt="Information"
-            className="w-full rounded-2xl object-cover shadow-political"
+            className="w-full object-cover"
           />
         </div>
         <div>

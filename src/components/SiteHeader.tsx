@@ -10,7 +10,7 @@ export function SiteHeader() {
         <img
           src={HeaderImg}
           alt="Site Header"
-          className="h-24 md:h-32 w-auto object-contain mb-2 shadow-political rounded-xl ring-tvk"
+          className="h-24 md:h-32 w-auto object-contain mb-2 rounded-xl"
         />
         <div className="space-y-1">
           <h1 className="tamil text-3xl md:text-4xl font-extrabold text-tvk-gradient leading-tight">

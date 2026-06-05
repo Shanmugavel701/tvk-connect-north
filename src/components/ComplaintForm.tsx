@@ -10,7 +10,7 @@ import { toast } from "sonner";
 const schema = z.object({
   name: z.string().trim().min(2).max(100),
   mobile: z.string().trim().regex(/^[6-9]\d{9}$/, "Invalid mobile"),
-  aadhar: z.string().trim().regex(/^\d{12}$/, "Invalid Aadhar").optional().or(z.literal("")),
+  aadhar: z.string().trim().regex(/^\d{12}$/, "Invalid Aadhar"),
   address: z.string().trim().min(5).max(500),
   category: z.string().min(1),
   area: z.string().min(1),
@@ -143,10 +143,11 @@ export function ComplaintForm() {
         </div>
         <div>
           <label className={labelCls}>
-            {tr("aadhar", lang)} <span className="text-xs font-normal text-muted-foreground">({tr("optional", lang)})</span>
+            {tr("aadhar", lang)} <span className="text-primary">*</span>
           </label>
           <input
             name="aadhar"
+            required
             inputMode="numeric"
             pattern="\d{12}"
             maxLength={12}
