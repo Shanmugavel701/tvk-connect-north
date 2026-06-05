@@ -14,6 +14,7 @@ export const t: Dict = {
   name: { ta: "பெயர்", en: "Full Name" },
   mobile: { ta: "மொபைல் எண்", en: "Mobile Number" },
   address: { ta: "முகவரி", en: "Address" },
+  aadhar: { ta: "ஆதார் எண்", en: "Aadhar Number" },
   category: { ta: "பிரச்சனை வகை", en: "Issue Category" },
   area: { ta: "பகுதி", en: "Area" },
   description: { ta: "குறை விவரம்", en: "Complaint Description" },

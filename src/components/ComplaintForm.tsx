@@ -10,6 +10,7 @@ import { toast } from "sonner";
 const schema = z.object({
   name: z.string().trim().min(2).max(100),
   mobile: z.string().trim().regex(/^[6-9]\d{9}$/, "Invalid mobile"),
+  aadhar: z.string().trim().regex(/^\d{12}$/, "Invalid Aadhar").optional().or(z.literal("")),
   address: z.string().trim().min(5).max(500),
   category: z.string().min(1),
   area: z.string().min(1),
@@ -32,6 +33,7 @@ export function ComplaintForm() {
     const raw = {
       name: String(fd.get("name") ?? ""),
       mobile: String(fd.get("mobile") ?? ""),
+      aadhar: String(fd.get("aadhar") ?? ""),
       address: String(fd.get("address") ?? ""),
       category: String(fd.get("category") ?? ""),
       area: String(fd.get("area") ?? ""),
@@ -53,9 +55,15 @@ export function ComplaintForm() {
         const { data } = supabase.storage.from("complaint-uploads").getPublicUrl(path);
         image_url = data.publicUrl;
       }
+      const insertData = { ...parsed.data };
+      if (insertData.aadhar) {
+        insertData.description = `Aadhar: ${insertData.aadhar}\n\n${insertData.description}`;
+      }
+      delete (insertData as any).aadhar;
+
       const { data, error } = await supabase
         .from("complaints")
-        .insert({ ...parsed.data, image_url })
+        .insert({ ...insertData, image_url })
         .select("complaint_id")
         .single();
       if (error) throw error;
@@ -130,6 +138,18 @@ export function ComplaintForm() {
             inputMode="numeric"
             pattern="[6-9][0-9]{9}"
             maxLength={10}
+            className={inputCls}
+          />
+        </div>
+        <div>
+          <label className={labelCls}>
+            {tr("aadhar", lang)} <span className="text-xs font-normal text-muted-foreground">({tr("optional", lang)})</span>
+          </label>
+          <input
+            name="aadhar"
+            inputMode="numeric"
+            pattern="\d{12}"
+            maxLength={12}
             className={inputCls}
           />
         </div>
